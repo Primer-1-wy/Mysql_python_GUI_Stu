@@ -1,22 +1,35 @@
-import tkinter as tk
-
-win =tk.Tk()
-# 设置主窗口
-win.geometry('250x100')
+from tkinter import *
+# 创建窗体
+win = Tk()
 win.title("C语言中文网")
+win.geometry('300x300')
 #win.iconbitmap('C:/Users/Administrator/Desktop/C语言中文网logo.ico')
-win.resizable(0,0)
-# 新建文本标签
-labe1 = tk.Label(win,text="账号：")
-labe2 = tk.Label(win,text="密码：")
-# grid()控件布局管理器，以行、列的形式对控件进行布局，后续会做详细介绍
-labe1.grid(row=0)
-labe2.grid(row=1)
-# 为上面的文本标签，创建两个输入框控件
-entry1 = tk.Entry(win)
-entry2 = tk.Entry(win)
-# 对控件进行布局管理，放在文本标签的后面
-entry1.grid(row=0, column=1)
-entry2.grid(row=1, column=1)
-# 显示主窗口
-win.mainloop()
+# 创建一个容器来包括其他控件
+frame = Frame (win)
+# 创建一个计算器
+def calc() :
+# 用户输入的表达式，计算结果后转换为字符串
+    result = "= "+ str (eval(expression.get()))
+    #将计算的结果显示在Label控件上
+    label.config(text =result)
+#创建一个Label控件
+label = Label (frame)
+#创建一个Entry控件
+entry = Entry (frame)
+#读取用户输入的表达式
+expression = StringVar ()
+#将用户输入的表达式显示在Entry控件上
+entry ["textvariable"] = expression
+#创建-一个 Button控件.当用户输入完毕后，单击此按钮即计算表达式的结果
+button1 = Button (frame, text="等 于",command=calc)
+#设置Entry控件为焦点所在
+entry.focus ()
+frame.pack ()
+#Entry控件位于窗体的上方
+entry .pack()
+#Label控件位于窗体的左方
+label .pack (side="left")
+#Button控件位于窗体的右方
+button1.pack (side="right")
+#开始程序循环
+frame .mainloop()
