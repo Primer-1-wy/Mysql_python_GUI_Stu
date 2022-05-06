@@ -31,13 +31,11 @@ class StartPage:
         label.pack(pady=100)  # pady=100 界面的长度
 
         Button(self.window, text="管理员登陆", font=tkFont.Font(size=16), command=lambda: AdminPage(self.window), width=30,
-               height=2,
-               fg='white', bg='gray', activebackground='black', activeforeground='white').pack()
+               height=2,fg='white', bg='gray', activebackground='black', activeforeground='white').pack()
         Button(self.window, text="学生登陆", font=tkFont.Font(size=16), command=lambda: StudentPage(self.window), width=30,
                height=2, fg='white', bg='gray', activebackground='black', activeforeground='white').pack()
         Button(self.window, text="关于", font=tkFont.Font(size=16), command=lambda: AboutPage(self.window), width=30,
-               height=2,
-               fg='white', bg='gray', activebackground='black', activeforeground='white').pack()
+               height=2,fg='white', bg='gray', activebackground='black', activeforeground='white').pack()
         Button(self.window, text='退出系统', height=2, font=tkFont.Font(size=16), width=30, command=self.window.destroy,
                fg='white', bg='gray', activebackground='black', activeforeground='white').pack()
 
@@ -48,7 +46,6 @@ class StartPage:
 class AdminPage:
     def __init__(self, parent_window):
         parent_window.destroy()  # 销毁主界面
-
         self.window = tk.Tk()  # 初始框的声明
         self.window.title('管理员登陆页面')
         self.window.geometry('300x450')  # 这里的乘是小x
@@ -146,7 +143,14 @@ class StudentPage:
         stu_pass = None
 
         # 数据库操作 查询管理员表
-        db = pymysql.connect("localhost", "root", "123465", "student")  # 打开数据库连接
+        db = pymysql.connect(
+            host = '127.0.0.1', # 连接主机, 默认127.0.0.1
+            user = 'root',      # 用户名
+            passwd = '123456',# 密码
+            port = 3306,        # 端口，默认为3306
+            db = 'student',        # 数据库名称
+            charset = 'utf8'    # 字符编码
+        )  # 打开数据库连接  # 打开数据库连接
         cursor = db.cursor()  # 使用cursor()方法获取操作游标
         sql = "SELECT * FROM stu_login_k WHERE stu_id = '%s'" % (self.student_id.get())  # SQL 查询语句
         try:
@@ -188,7 +192,8 @@ class AdminManage:
         self.frame_left_top = tk.Frame(width=300, height=200)
         self.frame_right_top = tk.Frame(width=200, height=200)
         self.frame_center = tk.Frame(width=500, height=400)
-        self.frame_bottom = tk.Frame(width=650, height=50)
+        self.frame_bottom = tk.Frame(width=500, height=100)
+
 
         # 定义下方中心列表区域
         self.columns = ("学号", "姓名", "性别", "年龄")
@@ -196,6 +201,9 @@ class AdminManage:
         self.vbar = ttk.Scrollbar(self.frame_center, orient=VERTICAL, command=self.tree.yview)
         # 定义树形结构与滚动条
         self.tree.configure(yscrollcommand=self.vbar.set)
+
+        self.button=ttk.Button(self.frame_bottom, text="退出", width=20,command=self.back);
+        self.button.grid(row=1, column=5,padx=20, pady=10)  # 位置设置
 
         # 表格的标题
         self.tree.column("学号", width=150, anchor='center')  # 表示列,不显示
@@ -526,8 +534,10 @@ class AboutPage:
         label = tk.Label(self.window, text='学生信息管理系统', bg='green', font=('Verdana', 20), width=30, height=2)
         label.pack()
 
-       # Label(self.window, text='作者：清晨的光明', font=('Verdana', 18)).pack(pady=30)
-      #  Label(self.window, text='blog.csdn.net/kdongyi', font=('Verdana', 18)).pack(pady=5)
+        Label(self.window, text='未开发', font=('Verdana', 18)).pack(pady=30)
+        #label=tk.Label(self.window,text="未开发",font=('Verdana', 18))
+        #label.pack(pady=6)
+        Label(self.window, text='Author:wy_1226', font=('Verdana', 18)).pack(pady=5)
 
         Button(self.window, text="返回首页", width=8, font=tkFont.Font(size=12), command=self.back).pack(pady=100)
 
