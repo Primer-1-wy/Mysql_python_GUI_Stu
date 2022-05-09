@@ -11,7 +11,7 @@ vartext = tkinter.StringVar()
 cuncu = []
 
 class anjianzhi:
-    global cuncu, vartext, result, fuhao
+    global cuncu, vartext, result, fuhaov
     def __init__(self,anjian):
         self.anjian = anjian
     def jia(self):

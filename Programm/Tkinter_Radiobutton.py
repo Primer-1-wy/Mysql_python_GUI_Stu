@@ -1,25 +1,21 @@
-'''
-单选框按钮控件（Radiobutton），同样允许用户选择具体的选项值，不过与 Listbox 相比，
-单选按钮控件仅允许用户选择单一的选项值，各个选项值之间是互斥的关系，因此只有一个选项可以被用户选择。
-
-Radiobutton 控件通常都是成组出现的，所有控件都使用相同的变量。Radiobutton 可以包含文本或图像，每一个按钮都可以与一个 Python 函数相关联。
-当按钮被按下时，对应的函数会被执行。这里需要注意的是，单选按钮控件仅能显示单一字体的文本，但文本可以跨越多行，除此之外，您还可以为个别的字符添加下划线。
-'''
-
-import tkinter as tk
-
-window = tk.Tk()
-window.title("C语言中文网")
-window.geometry('400x180')
-#window.iconbitmap('C:/Users/Administrator/Desktop/C语言中文网logo.ico')
-# IntVar() 用于处理整数类型的变量
-v = tk.IntVar()
-# 根据单选按钮的 value 值来选择相应的选项
-v.set(0)
-# 使用 variable 参数来关联 IntVar() 的变量 v
-tk.Radiobutton(window, text="C语言中文网", fg='blue',font=('微软雅黑','12','bold'),variable=v, value=0).pack(anchor = 'w')
-tk.Radiobutton(window, text="CSDN平台", variable=v, value=2).pack(anchor = 'w')
-tk.Radiobutton(window, text="知乎平台", variable=v, value=3).pack(anchor = 'w')
-tk.Radiobutton(window, text="牛客网平台", variable=v, value=4).pack(anchor = 'w')
+from tkinter import *
+win = Tk()
+win.title("C语言中文网")
+win.geometry('500x200')
+win.resizable(0,0)
+lb = Label(text='C语言中文网答疑辅导班',font=('微软雅黑', 18,'bold'),fg='#CD7054')
+lb.pack()
+#win.iconbitmap('C:/Users/Administrator/Desktop/C语言中文网logo.ico')
+# 设置三个复选框控件，
+check1 = Checkbutton(win, text="Python",font=('微软雅黑', 15,'bold'),onvalue=1,offvalue=0)
+check2 = Checkbutton(win, text="C语言",font=('微软雅黑', 15,'bold'),onvalue=1,offvalue=0)
+check3 = Checkbutton(win, text="Java",font=('微软雅黑', 15,'bold'),onvalue=1,offvalue=0)
+# 将第一个 复选框按钮的 variable值，设置为 onvalue =1 ，表示选中状态
+check1.select ()
+# 取消了第一个复选框的选中状态
+check1.toggle()
+check1.pack (side = LEFT)
+check2.pack (side = LEFT)
+check3.pack (side = LEFT)
 # 显示窗口
-window.mainloop()
+win.mainloop()
