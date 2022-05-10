@@ -1,27 +1,30 @@
 from tkinter import *
 root = Tk()
-# 设置窗口的背景颜色以区别画布
-root.config(bg='#87CEEB')
+# 设置主窗口区的背景颜色以区别画布区的颜色
+root.config(bg='#8DB6CD')
 root.title("C语言中文网")
-root.geometry('450x350')
-root.iconbitmap('C:/Users/Administrator/Desktop/C语言中文网logo.ico')
-# 设置画布的背景颜色为白色
-cv=Canvas(root,bg="white",width =300, height = 250)
-# 将控件放置在主窗口中
-cv.pack()
-# 设置坐标点,此处可以元组的形式来设置坐标点
-point=[(10,20),(20,30),(30,40),(40,100),(80,120),(150,90)]
-# 创建画布，添加线条
-# fill 参数指定填充的颜色，如果为空字符串，则表示透明
-# dash 参数表示用来绘制虚线轮廓，元组参数，分别代表虚线中线段的长度和线段之间的间隔
-# arrow 设线段的箭头样式，默认不带箭头，参数值 first 表示添加箭头带线段开始位置，last表示到末尾占位置，both表示两端均添加
-# smooth 布尔值参数，表示是否以曲线的样式划线，默认为 False
-# width 控制线宽
-line1=cv.create_line(point,fill="purple",dash=(1,1),arrow=LAST,width=5)
-print('线段line1的画布id号:',line1)
-line2=cv.create_line(point,fill="red",arrow=BOTH,smooth=TRUE,width=5)
-print('线段line2的画布id号:',line2)
-# 移动其中一条线段，只需要更改其坐标就可以,使用 coords()方法移动曲线
-cv.coords(line2,50,30,25,35,35,40,50,120,60,170,10,180)
+root.geometry('500x400')
+#root.iconbitmap('C:/Users/Administrator/Desktop/C语言中文网logo.ico')
+
+# 将画布设置为白色
+canvas = Canvas(root,width = 400,height = 400,bg='white')
+# 设置基准坐标
+x0,y0,x1,y1 = 10,10,80,80
+# 绘制扇形,起始角度为 0 度，结束角度为 270, 扇形区域填充色为淡蓝色，轮廓线为蓝色，线宽为 2px
+arc = canvas.create_arc(x0, y0, x1, y1,start = 0, extent = 270, fill = '#B0E0E6',outline ='blue',width = 2)
+# 绘制圆形
+oval = canvas.create_oval(x0+150, y0, x1+150, y1,fill ='#CD950C',outline = 'blue',width=2)
+# 绘制矩形,并将轮廓线设置为透明色，即不显示最外围的轮廓线，默认为黑色
+rect = canvas.create_rectangle(x0,y0+100,x1,y1+100,fill='red',outline = '')
+# 绘制一个三角形，填充色为绿色
+trigon = canvas.create_polygon(80,80,150,80,200,200, outline="", fill="green",)
+
+# 当然也可以绘制一个任意多边形，只要你的坐标正确就可以
+# 绘制一个多边形，首先定义一系列的多边形上的坐标点
+poly_points=[(0,280),(140,200),(140,240),(270,240),(270,320),(140,320),(140,360)]
+polygon = canvas.create_polygon(poly_points,fill="#BF3EFF")
+
+# 放置画布在主窗口
+canvas.pack()
 # 显示窗口
 root.mainloop()
