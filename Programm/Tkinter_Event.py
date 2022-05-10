@@ -15,7 +15,7 @@ win.geometry('450x350+300+200')
 # 创建一个窗体容器frame
 frame = Frame (win, relief=RAISED, borderwidth=2, width=300,height=200)
 frame.bind('<Motion>',handleMotion)
-lb1 = Label(frame,text='没有任何事件触发', bg='purple', )
+lb1 = Label(frame,text='没有任何事件触发', bg='yellow', )
 # 使用place进行位置布局，下一节会介绍
 lb1.place (x=20,y=20)
 lb2 = Label(frame,text='')
