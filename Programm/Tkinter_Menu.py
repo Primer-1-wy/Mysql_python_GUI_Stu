@@ -14,6 +14,7 @@ filemenu.add_command(label='新建')
 filemenu.add_command(label='删除')
 filemenu.add_command(label='复制')
 filemenu.add_command(label='保存')
+
 # 显示菜单，将菜单命令绑定在菜单按钮对象上
 menubtn.config(menu=filemenu)
 win.mainloop()
